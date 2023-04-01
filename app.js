@@ -94,7 +94,7 @@ function distance(x,y){
 			let va = v.match(/\w+/g)
 			let vb = x.match(/\w+/g)
 			let n  = _.intersection(va,vb)
-			table.push( [n.length, x, i, n ] )
+			table.push( [ n.length, x, i, n ] )
 		}
 
 		table.sort( (a,b) => b[0] - a[0] )
