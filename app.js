@@ -15,7 +15,7 @@ function regex_to_span(m){
 	}
 
 	let str = ""
-	for( let i=0;i<m.length;i++){
+	for( let i=0;i<m.length;i++ ){
 	str += ta[i] + `<span style="color:darksalmon;">${m[i]}</span>`
 	}
 	str += ta.slice(-1)
