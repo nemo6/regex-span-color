@@ -78,3 +78,59 @@ function multi_regex_to_span(m){
 
 	return content
 }
+
+function distance(x,y){
+
+	let _ = require("C:/Users/MIGUEL/AppData/Roaming/npm/node_modules/lodash")
+
+	function findOne(v,y){
+
+		let table = []
+
+		for( let [i,x] of y.entries() ){
+
+			let va = v.match(/\w+/g)
+			let vb = x.match(/\w+/g)
+			let n  = _.intersection(va,vb)
+			table.push( [n.length, x, i, n ] )
+		}
+
+		table.sort( (a,b) => b[0] - a[0] )
+		return {id:table[0][2],percent:table[0][0],color:table[0][3]}
+	}
+
+	let duplicate = []
+	
+	for ( let v of x ){
+
+		let p = findOne(v,y)
+
+		if( p.color.length != 0 ){
+
+			let cv = v
+			let ta = []
+
+			for( let i=0;i<p.color.length;i++){
+		
+				let reg = new RegExp(`(^.*?)${p.color[i]}(.*)$`)
+			
+				try { ta.push(cv.match(reg)[1])
+				cv = cv.match(reg)[2] }catch(e){ console.log(reg,cv.match(reg)) }
+
+				if( i == (p.color.length-1) )
+				ta.push(cv)
+			}
+
+			let str = ""
+			for( let i=0;i<p.color.length;i++){
+			str += ta[i] + `<span style="color:darksalmon;">${p.color[i]}</span>`
+			}
+			str += ta.slice(-1)
+
+			duplicate.push( [ p.percent , str, y[p.id] ] )
+
+		}
+	}
+
+	return duplicate
+}
