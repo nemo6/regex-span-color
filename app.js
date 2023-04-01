@@ -83,7 +83,7 @@ function multi_regex_to_span(m){
 
 function distance(x,y){
 
-	let _ = require("C:/Users/MIGUEL/AppData/Roaming/npm/node_modules/lodash")
+	let _ = require("lodash")
 
 	function findOne(v,y){
 
