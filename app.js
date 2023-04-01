@@ -23,7 +23,7 @@ function regex_to_span(m){
 	return str
 }
 
-//
+// //
 
 function multi_regex_to_span(m){
 
